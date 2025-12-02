@@ -5,7 +5,10 @@
   <title>Hex → Image Converter | Deluxe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./stylesheet/style.css" />
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="shortcut icon" href="./favicon.png" />
+  <link rel="apple-touch-icon" href="./favicon.png" />
+
 
   <!-- Icônes Font Awesome -->
   <link
@@ -16,58 +19,97 @@
 <body>
   <main class="app-shell">
     <!-- LEFT: FORM -->
-    <section>
-      <header class="header">
-        <div class="badge">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-          Hex to Image · Live
-        </div>
-        <h1 class="title">
-          <span class="gradient">Hex → Image</span> Converter
-        </h1>
-        <p class="subtitle">
-          Colle ton flux <strong>hexadécimal</strong> (PNG/JPEG/GIF/WebP) et génère instantanément une image.
-        </p>
-      </header>
+  <section>
+  <header class="header">
+    <div class="badge">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      Hex to Image · Live
+    </div>
+    <h1 class="title">
+      <span class="gradient">Hex → Image</span> Converter
+    </h1>
+    <p class="subtitle">
+      Colle ton flux <strong>hexadécimal</strong> ou ton <strong>log BLE</strong>,
+      puis convertis en image.
+    </p>
+  </header>
 
-      <article class="card">
-        <div class="card-header">
-          <div class="card-title">1 · Code HEX</div>
-          <div class="card-pill">Input</div>
-        </div>
 
-        <label for="hexInput" class="field-label">Flux hexadécimal</label>
-        <textarea id="hexInput" placeholder="Colle ton HEX ici…"></textarea>
+  <!-- 1. LOG BLE -->
+  <article class="card">
+    <div class="card-header">
+      <div class="card-title">1 · Log BLE brut</div>
+      <div class="card-pill">Log</div>
+    </div>
 
-        <div class="controls-row">
-          <div class="select-group">
-            <span class="field-label">Type d'image</span>
-            <select id="mimeType">
-              <option value="image/png">PNG</option>
-              <option value="image/jpeg">JPEG</option>
-              <option value="image/webp">WEBP</option>
-              <option value="image/gif">GIF</option>
-            </select>
-          </div>
+    <label class="field-label">Colle ton log (nRF Connect)</label>
+    <textarea id="logInput" placeholder="Colle ici ton log BLE…"></textarea>
 
-          <div class="input-group">
-            <span class="field-label">Nom du fichier</span>
-            <input type="text" id="fileName" placeholder="image_depuis_hex" />
-          </div>
-        </div>
+    <div class="buttons-row">
+      <button id="extractBtn" class="btn btn-primary">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Extraire HEX
+      </button>
+    </div>
 
-        <div class="buttons-row">
-          <button id="convertBtn" class="btn btn-primary">
-            <i class="fa-solid fa-bolt"></i> Convertir
-          </button>
-          <button id="clearBtn" class="btn btn-ghost">
-            <i class="fa-solid fa-eraser"></i> Effacer
-          </button>
-        </div>
+    <p id="logError" class="error-text"></p>
+  </article>
 
-        <p class="error-text" id="errorText"></p>
-      </article>
-    </section>
+
+
+  <!-- 2. HEX extrait automatiquement -->
+  <article class="card">
+    <div class="card-header">
+      <div class="card-title">2 · HEX extrait du log</div>
+      <div class="card-pill">HEX</div>
+    </div>
+
+    <label class="field-label">HEX généré depuis le log</label>
+    <textarea id="hexOutput" placeholder="Le HEX extrait apparaîtra ici…"></textarea>
+  </article>
+
+
+
+  <!-- 3. TON FORMULAIRE ORIGINAL (HEX → image) -->
+  <article class="card">
+    <div class="card-header">
+      <div class="card-title">3 · Code HEX</div>
+      <div class="card-pill">Input</div>
+    </div>
+
+    <label for="hexInput" class="field-label">Flux hexadécimal</label>
+    <textarea id="hexInput" placeholder="Colle ton HEX ici…"></textarea>
+
+    <div class="controls-row">
+      <div class="select-group">
+        <span class="field-label">Type d'image</span>
+        <select id="mimeType">
+          <option value="image/png">PNG</option>
+          <option value="image/jpeg">JPEG</option>
+          <option value="image/webp">WEBP</option>
+          <option value="image/gif">GIF</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <span class="field-label">Nom du fichier</span>
+        <input type="text" id="fileName" placeholder="image_depuis_hex" />
+      </div>
+    </div>
+
+    <div class="buttons-row">
+      <button id="convertBtn" class="btn btn-primary">
+        <i class="fa-solid fa-bolt"></i> Convertir
+      </button>
+      <button id="clearBtn" class="btn btn-ghost">
+        <i class="fa-solid fa-eraser"></i> Effacer
+      </button>
+    </div>
+
+    <p class="error-text" id="errorText"></p>
+  </article>
+
+</section>
+
 
     <!-- RIGHT: PREVIEW -->
     <section class="preview-card">
@@ -97,6 +139,7 @@
     </section>
   </main>
 
+ <script src="./javascript/ble-extractor.js"></script>
   <script src="./javascript/script.js"></script>
 </body>
 </html>
