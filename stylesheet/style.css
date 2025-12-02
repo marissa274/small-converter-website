@@ -11,11 +11,13 @@
   --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.45);
 }
 
+/* RESET */
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: system-ui, sans-serif;
@@ -23,19 +25,20 @@ html, body {
   color: var(--text);
 }
 
+/* LAYOUT GLOBAL */
 body {
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem 1.5rem;
 }
 
 .app-shell {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  padding: 2rem;
+  gap: 2.5rem;
+  padding: 2.5rem;
   border-radius: 2rem;
   background: var(--bg-soft);
   box-shadow: var(--shadow-xl);
@@ -47,9 +50,26 @@ body {
   }
 }
 
+/* TITRE & HEADER */
+.header {
+  margin-bottom: 2rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid #334155;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
 .title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: bold;
+  margin: 1rem 0 0.5rem;
 }
 
 .gradient {
@@ -58,29 +78,92 @@ body {
   color: transparent;
 }
 
+.subtitle {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* CARD */
 .card {
   background: #0f172a;
-  padding: 1.3rem;
+  padding: 2rem;
   border-radius: var(--radius-xl);
+  margin-bottom: 2rem;
+  border: 1px solid #1e293b;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.card-pill {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+}
+
+/* FORMULAIRE */
+.field-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+textarea,
+select,
+input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: #0b1628;
+  border-radius: 1rem;
+  border: 1px solid #334155;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
 }
 
 textarea {
-  width: 100%;
-  height: 180px;
-  background: #0f172a;
-  color: var(--text);
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 1px solid #334155;
+  height: 200px;
+  resize: vertical;
 }
 
-select, input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  background: #0f172a;
-  color: var(--text);
-  border: 1px solid #334155;
+.field-label {
+  padding-left: 0.3rem;
+  padding-bottom: 0.3rem;
+  display: inline-block;
+}
+
+
+/* ROWS */
+.controls-row {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.controls-row > div {
+  flex: 1;
+}
+
+/* BUTTONS */
+.buttons-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .btn {
@@ -89,6 +172,10 @@ select, input {
   cursor: pointer;
   border: none;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
 }
 
 .btn-primary {
@@ -102,28 +189,75 @@ select, input {
   color: var(--muted);
 }
 
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* ERREUR */
+.error-text {
+  color: var(--error);
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* PREVIEW */
+.preview-card {
+  padding: 0.5rem;
+}
+
 .preview-frame {
   background: #0f172a;
   border-radius: var(--radius-xl);
-  padding: 1rem;
-  height: 260px;
+  border: 1px solid #1e293b;
+  padding: 2rem;
+  height: 310px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.preview-placeholder {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.preview-placeholder i {
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
 }
 
 .preview-image {
   max-width: 100%;
   max-height: 100%;
   display: none;
+  border-radius: 1rem;
 }
 
-.preview-placeholder {
-  text-align: center;
+/* META */
+.preview-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-pill {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
   color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.error-text {
-  color: var(--error);
-  margin-top: 1rem;
+#downloadLink {
+  color: #a78bfa;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+#downloadLink:hover {
+  text-decoration: underline;
 }
